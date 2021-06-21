@@ -361,3 +361,8 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/CalendarBot/Modules/APIKeys.cs
+/CalendarBot/client_secret_1014582396987-00f1akca9e70fjhq4dqg4k8k392h7hkk.apps.googleusercontent.com.json
+/CalendarBot/appsettings.json
+/CalendarBot/client_secret.json
+/CalendarBot/clientsecret.json
