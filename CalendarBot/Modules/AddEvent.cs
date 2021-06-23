@@ -79,7 +79,7 @@ namespace CalendarBot.Modules
             String calendarId = "primary";
             EventsResource.InsertRequest request = service.Events.Insert(newEvent, calendarId);
             Event createdEvent = request.Execute();
-            return "Event created: {0}" + createdEvent.HtmlLink;
+            return "Event created: " + createdEvent.HtmlLink;
 
         }
 

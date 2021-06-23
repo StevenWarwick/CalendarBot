@@ -40,5 +40,11 @@ namespace CalendarBot.Modules
         {
             await ReplyAsync(CalendarBot.Modules.AddEvent.Addevent(eventInfo));
         }
+
+        [Command("deleteEvent")]
+        public async Task DeleteEvent([Remainder] string EventInfo)
+        {
+            await ReplyAsync(CalendarBot.Modules.DeleteEvent.deleteEvent(EventInfo));
+        }
     }
 }

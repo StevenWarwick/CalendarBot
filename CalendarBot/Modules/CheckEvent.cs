@@ -70,7 +70,9 @@ namespace CalendarBot.Modules
                         when = eventItem.Start.Date;
 
                     }
-                    s += eventItem.Summary + " " + when + "\n";
+
+                    //eventItem.HtmlLink gives the eventID
+                    s += eventItem.Summary + " " + when + ": " + /*eventItem.HtmlLink +*/ eventItem.Id +"\n";
                     //Console.WriteLine("{0} ({1})", eventItem.Summary, when);
                 }
                 return s;
