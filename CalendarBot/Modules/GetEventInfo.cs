@@ -1,24 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Google.Apis.Auth.OAuth2;
+﻿using Google.Apis.Auth.OAuth2;
 using Google.Apis.Calendar.v3;
 using Google.Apis.Calendar.v3.Data;
 using Google.Apis.Services;
 using Google.Apis.Util.Store;
+using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace CalendarBot.Modules
 {
-    class DeleteEvent
+    class GetEventInfo
     {
         static string[] Scopes = { CalendarService.Scope.Calendar };
         static string ApplicationName = "Google Calendar API .NET ";
 
-        public static string deleteEvent(string EventInfo)
+        public static string getEventInfo(string eventInfo)
         {
             UserCredential credential;
 
@@ -43,12 +43,36 @@ namespace CalendarBot.Modules
                 ApplicationName = ApplicationName,
             });
 
+            EventsResource.ListRequest request = service.Events.List("primary");
+            request.TimeMin = DateTime.Now;
+            request.ShowDeleted = false;
+            request.SingleEvents = true;
+            request.MaxResults = 10;
+            request.OrderBy = EventsResource.ListRequest.OrderByEnum.StartTime;
 
-            service.Events.Delete("primary", EventInfo).Execute();
-            return "Event deleted";
+            // List events.
+            Events events = request.Execute();
+            //Console.WriteLine("Upcoming events:");
+            if (events.Items != null && events.Items.Count > 0)
+            {
+                string s = "";
+                foreach (var eventItem in events.Items)
+                {
+
+                    if (eventItem.Summary == eventInfo)
+                    {
+                        s += eventItem.Summary + " "+ eventItem.Description.ToString() + " " + eventItem.Start.DateTime.ToString() +  ": " + /*eventItem.HtmlLink +*/ eventItem.Id + "\n";
+                    }
+                    
 
 
+                }
+                return s;
+            }
+            else
+            {
+                return "No upcoming events found.";
+            }
         }
-
     }
 }

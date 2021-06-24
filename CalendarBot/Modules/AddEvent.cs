@@ -34,7 +34,6 @@ namespace CalendarBot.Modules
                     "user",
                     CancellationToken.None,
                     new FileDataStore(credPath, true)).Result;
-                //Console.WriteLine("Credential file saved to: " + credPath);
             }
 
             // Create Google Calendar API service.

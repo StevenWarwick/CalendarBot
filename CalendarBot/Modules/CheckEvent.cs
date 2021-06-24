@@ -38,7 +38,6 @@ namespace CalendarBot.Modules
                     CancellationToken.None//,
                                           //new FileDataStore(credPath, true)
                     ).Result;
-                //Console.WriteLine("Credential file saved to: " + credPath);
             }
 
             // Create Google Calendar API service.
@@ -71,9 +70,7 @@ namespace CalendarBot.Modules
 
                     }
 
-                    //eventItem.HtmlLink gives the eventID
-                    s += eventItem.Summary + " " + when + ": " + /*eventItem.HtmlLink +*/ eventItem.Id +"\n";
-                    //Console.WriteLine("{0} ({1})", eventItem.Summary, when);
+                    s += eventItem.Summary + " " + when + ": " + eventItem.Id +"\n";
                 }
                 return s;
             }
@@ -81,8 +78,6 @@ namespace CalendarBot.Modules
             {
                 return "No upcoming events found.";
             }
-            //Console.Read();
-
         }
     }
 }
